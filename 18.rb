@@ -4,12 +4,6 @@ class String
   end
 end
 
-class Array
-  def a_to_s
-    self.map { |sub_ary| sub_ary.join(' ') }.join("\n")
-  end
-end
-
 triangle = "75
 95 64
 17 47 82
