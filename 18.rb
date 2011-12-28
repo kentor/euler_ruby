@@ -28,6 +28,7 @@ def largest_sum(triangle)
     left, right = n + triangle[row+1][i], n + triangle[row+1][i+1]
     triangle[row][i] = left > right ? left : right
   end
+  
   triangle.pop
   largest_sum(triangle)
 end

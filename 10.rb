@@ -1,8 +1,4 @@
 require 'mathn'
 sum, p = 0, Prime.new
-
-while (a = p.next) < 2000000
-  sum += a
-end
-
+sum += a while (a = p.next) < 2000000
 puts sum
