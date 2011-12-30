@@ -25,8 +25,7 @@ def largest_sum(triangle)
 
   row = triangle.size - 2
   triangle[row].each_with_index do |n, i|
-    left, right = n + triangle[row+1][i], n + triangle[row+1][i+1]
-    triangle[row][i] = left > right ? left : right
+    triangle[row][i] += [triangle[row+1][i], triangle[row+1][i+1]].max
   end
   
   triangle.pop
