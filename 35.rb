@@ -38,4 +38,4 @@ class Integer
   end
 end
 
-puts (11...10**6).step(2).select(&:circular_prime?).size + 4
+puts (11...10**6).step(2).count(&:circular_prime?) + 4
