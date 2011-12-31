@@ -1,3 +1,31 @@
-string, n = "", 0
-string << (n += 1).to_s while string.size < 10**6
-puts (0..6).map { |n| string[10**n-1].to_i }.inject(:*)
+class Integer
+  def prime?
+    return false if self < 0
+    return true  if self == 2 || self == 3
+    return false if self == 1
+    return false if self % 2 == 0
+    return false if (self + 1) % 6 != 0 && (self - 1) % 6 != 0
+
+    3.upto(Math.sqrt(self).floor) do |div|
+      return false if self % div == 0
+    end
+
+    return true
+  end
+end
+
+def quad(n, a, b)
+  n*n + a*n + b
+end
+
+max, best_a, best_b = 0, 0, 0
+
+(-999..999).step(2) do |a|
+  (-999..999).step(2) do |b|
+    consec, n = 0, -1
+    consec += 1 while quad((n += 1), a, b).prime?
+    max, best_a, best_b = consec, a, b if consec > max 
+  end
+end
+
+puts best_a*best_b

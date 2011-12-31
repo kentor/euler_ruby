@@ -1,9 +1,8 @@
 keep = []
-
-(2..100).each do |a|
-  (2..100).each do |b| 
+2.upto(100) do |a|
+  2.upto(100) do |b| 
     keep << a**b
   end
 end
 
-puts keep.size
+puts keep.uniq.size

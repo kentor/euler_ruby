@@ -25,18 +25,17 @@ class Integer
   end
 
   def circular_prime?
-    string, r_string = self.to_s, self.to_s
+    string = self.to_s
 
-    return true  if string.size == 1 && self.prime?
     return false if string.include_024568?
     return false if !self.prime?
 
-    until r_string.rotate! == string
-      return false if !r_string.to_i.prime?
+    until string.rotate!.to_i == self
+      return false if !string.to_i.prime?
     end
 
     return true
   end
 end
 
-puts (2...10**6).select(&:circular_prime?).size
+puts (11...10**6).step(2).select(&:circular_prime?).size + 4
