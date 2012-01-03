@@ -19,4 +19,3 @@ squares = Set.new (1..1000) { |n| n*n }
 
   if flag; puts n; break; end
 end
-
