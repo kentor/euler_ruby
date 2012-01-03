@@ -1,10 +1,8 @@
 max = 0
 
-901.upto(999) do |x|
-  x.upto(999) do |y|
-    prod = x*y
-    max = prod if prod == prod.to_s.reverse.to_i && prod > max
-  end
+(901..999).to_a.combination(2) do |x,y|
+  prod = x*y
+  max = prod if prod == prod.to_s.reverse.to_i && prod > max
 end
 
 puts max

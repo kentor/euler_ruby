@@ -25,4 +25,4 @@ class Integer
   end
 end
 
-puts (1..1000).to_a.map { |num| num.to_w.tr(' ', '').size }.inject(:+)
+puts (1..1000).map { |num| num.to_w.tr(' ', '').size }.inject(:+)
