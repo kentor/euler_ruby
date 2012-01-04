@@ -1,16 +1,22 @@
-# class Integer
-#   def prime?
-#     return true  if self == 2 || self == 3
-#     return false if self == 1
-#     return false if (self + 1) % 6 != 0 && (self - 1) % 6 != 0
+require 'set'
+require 'prime'
 
-#     3.upto(Math.sqrt(self).floor) do |div|
-#       return false if self % div == 0
-#     end
-#   end
-# end
+primes = Prime.each(1000000).to_set
+array = []
 
-# puts (1...1000000).step(2).select(&:prime?).size
+sum, num = 0, nil
+primes.each do |p|
+  sum += p
+  break if sum > 1000000
+  array.unshift(p)
+end
 
-require 'mathn'
-puts Prime.each(10**6).count
+array.size.downto(21) do |window|
+  (array.size - window).times do |i|
+    sum = array[i...window+i].inject(:+)
+    if primes.include?(sum); num = sum; break; end
+  end
+  break if num
+end
+
+puts num
