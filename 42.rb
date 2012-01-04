@@ -1,7 +1,6 @@
 class Integer
   def triangular?
-    n = 8*self + 1
-    n % Math.sqrt(n).floor == 0
+    Math.sqrt(8*self + 1) % 1 == 0
   end
 end
 
