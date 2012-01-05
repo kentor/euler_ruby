@@ -1,6 +1,6 @@
 class Integer
   def prime?
-    return false if self % 2 == 0
+#    return false if self % 2 == 0
     return false if (self + 1) % 6 != 0 && (self - 1) % 6 != 0
 
     3.upto(Math.sqrt(self).floor) do |div|

@@ -1,4 +1,2 @@
-require 'mathn'
-sum, p = 0, Prime.new
-sum += a while (a = p.next) < 2000000
-puts sum
+require 'prime'
+puts Prime.each(2000000).inject(:+)

@@ -7,9 +7,8 @@ class Integer
     self == self.reverse
   end
     
-  def lychrel?
-    n = self
-    49.times { return false if (n = n + n.reverse).palindromic? }
+  def lychrel?(n = self)
+    49.times { return false if (n += n.reverse).palindromic? }
   end
 end
 
