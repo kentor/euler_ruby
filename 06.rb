@@ -1,8 +1,1 @@
-sum_square = square_sum = 0
-
-1.upto(100) do |x|
-  sum_square += x*x
-  square_sum += x
-end
-
-puts square_sum * square_sum - sum_square
+puts (1..100).inject(:+)**2 - (1..100).map { |n| n*n }.inject(:+)
