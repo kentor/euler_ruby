@@ -6,11 +6,12 @@ class Integer
   end
 end
 
-(647..10**10).each do |n|
-  next unless (n+3).four_factors?
-  next unless (n+2).four_factors?
-  next unless (n+1).four_factors?
-  next unless n.four_factors?
+n = 646
+loop do
+  unless (n+4).four_factors?; n += 4; next; end
+  unless (n+3).four_factors?; n += 3; next; end
+  unless (n+2).four_factors?; n += 2; next; end
+  next unless (n+=1).four_factors?
   puts n
   break
 end

@@ -12,8 +12,8 @@ primes.each do |p|
 end
 
 array.size.downto(21) do |window|
-  (array.size - window).times do |i|
-    sum = array[i...window+i].inject(:+)
+  array.each_cons(window).each do |a|
+    sum = a.inject(:+)
     if primes.include?(sum); num = sum; break; end
   end
   break if num
