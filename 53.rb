@@ -5,21 +5,8 @@ class Integer
   end
 
   def choose(r)
-    self.! / (r.! * (self-r).!)
+    !self / (!r * !(self-r))
   end
 end
 
-puts (23..100).map { |n| (2..n-2).select { |r| n.choose(r) > 1000000 }.size }.inject(:+)
-
-# count = 0
-# 23.upto(100) do |n|
-#   n_count = 0
-#   2.upto(n/2) do |r|
-#     n_count += 1 if n.choose(r) > 1000000
-#   end
-#   n_count *= 2
-#   n_count -= 1 if n.even?
-#   count += n_count
-# end
-
-# puts count
+puts (23..100).map { |n| (2..n-2).count { |r| n.choose(r) > 1000000 } }.inject(:+)

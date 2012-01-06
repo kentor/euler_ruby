@@ -20,12 +20,10 @@ end
 
 max, best_a, best_b = 0, 0, 0
 
-(-999..999).step(2) do |a|
-  (-999..999).step(2) do |b|
-    consec, n = 0, -1
-    consec += 1 while quad((n += 1), a, b).prime?
-    max, best_a, best_b = consec, a, b if consec > max 
-  end
+(-999..999).step(2).to_a.permutation(2) do |a,b|
+  consec, n = 0, -1
+  consec += 1 while quad(n+=1, a, b).prime?
+  max, best_a, best_b = consec, a, b if consec > max 
 end
 
-puts best_a*best_b
+puts best_a * best_b

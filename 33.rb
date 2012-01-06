@@ -9,4 +9,4 @@ fractions = []
   end
 end
 
-puts fractions.transpose.map { |n| n.inject(:*) }.to_s
+puts fractions.transpose.map { |n| n.inject(:*) }.join('/').to_r.denominator
