@@ -1,8 +1,1 @@
-max = 0
-(2...100).each do |a|
-  (2...100).each do |b|
-    max = [max, (a**b).to_s.chars.map(&:to_i).inject(:+)].max
-  end
-end
-
-puts max
+puts (2...100).to_a.permutation(2).map { |a,b| (a**b).to_s.chars.map(&:to_i).inject(:+) }.max
