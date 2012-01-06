@@ -12,8 +12,8 @@ end
 
 class Integer
   def prime?
-#     return true  if self == 2 || self == 3
-#     return false if self == 1
+    return true  if self == 2 || self == 3
+    return false if self == 1
     return false if self % 2 == 0
     return false if (self + 1) % 6 != 0 && (self - 1) % 6 != 0
 
