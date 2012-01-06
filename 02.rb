@@ -1,8 +1,3 @@
-succ, curr, sum = 1, 0, 0
-
-while succ < 4000000
-  succ, curr = succ + curr, succ
-  sum += succ if succ.even?
-end
-
-puts sum
+fib = [1, 2]
+fib << @sum while (@sum = fib.last(2).inject(:+)) < 4000000
+puts fib.select(&:even?).inject(:+)
