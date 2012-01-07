@@ -1,12 +1,14 @@
-def divisors(n)
-  (2..Math.sqrt(n).floor).map { |d| [d, n/d] if n % d == 0 }.compact.flatten.uniq.push(1)
+class Integer
+  def divisors
+    (2..Math.sqrt(self).floor).map { |d| [d, self/d] if self % d == 0 }.compact.flatten.uniq << 1
+  end
+
+  def sum_divisors
+    divisors.inject(:+)
+  end
 end
 
-def sum_divisors(n)
-  divisors(n).inject(:+)
-end
-
-puts (3..9999).map { |n|
-  sum = sum_divisors(n)
-  n if sum != 1 && sum != n && n == sum_divisors(sum)
-}.compact.inject(:+)
+puts (3..9999).select { |n|
+  sum = n.sum_divisors
+  sum != 1 && sum != n && n == sum.sum_divisors
+}.inject(:+)
