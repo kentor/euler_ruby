@@ -1,8 +1,1 @@
-keep = []
-2.upto(100) do |a|
-  2.upto(100) do |b| 
-    keep << a**b
-  end
-end
-
-puts keep.uniq.size
+puts (2..100).to_a.repeated_permutation(2).map { |a,b| a**b }.uniq.size
