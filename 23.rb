@@ -18,4 +18,4 @@ abundant.each_with_index do |a,i|
   end
 end
 
-puts ((1..28123).to_a - sums.uniq!).inject(:+)
+puts ((1..28123).to_a - sums).inject(:+)
