@@ -9,6 +9,6 @@ class Integer
 end
 
 puts (3..9999).select { |n|
-  sum = n.sum_divisors
-  sum != 1 && sum != n && n == sum.sum_divisors
+  pair = n.sum_divisors
+  pair != 1 && pair != n && pair.sum_divisors == n
 }.inject(:+)
