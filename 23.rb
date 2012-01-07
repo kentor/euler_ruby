@@ -1,29 +1,21 @@
 class Integer
   def divisors
-    (2..Math.sqrt(self).floor).map { |d| [d, self/d] if self % d == 0 }.compact.flatten.uniq.push(1)
-  end
-
-  def sum_divisors
-    divisors.inject(:+)
+    (2..Math.sqrt(self).floor).map { |d| [d, self/d] if self % d == 0 }.compact.flatten.uniq << 1
   end
 
   def abundant?
-    self < sum_divisors
+    self < divisors.inject(:+)
   end
 end
 
 abundant = (1..28123).select(&:abundant?)
 
 sums = []
-abundant.each_with_index do |v, i|
-  (i...abundant.size).each do |j|
-    break if (sum = v + abundant[j]) > 28123
+abundant.each_with_index do |a,i|
+  abundant[i...abundant.size].each do |b|
+    break if (sum = a + b) > 28123
     sums << sum
   end
 end
-sums = sums.uniq.sort
 
-keep = []
-(1..28123).each { |a| a != sums.first ? keep << a : sums.shift }
-
-puts keep.inject(:+)
+puts ((1..28123).to_a - sums.uniq!).inject(:+)
