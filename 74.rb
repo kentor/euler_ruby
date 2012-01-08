@@ -30,7 +30,7 @@ class Integer
   end
 
   def count_forms(digits = self.to_s.chars.map(&:to_i))
-    numerator   = (digits.count - digits.count(0)) * Factorials[digits.count - 1]
+    numerator   = (digits.count - digits.count(0)) * Factorials[digits.count-1]
     denominator = (0..9).inject(1) { |prod, n| prod * Factorials[digits.count(n)] }
     numerator / denominator
   end
