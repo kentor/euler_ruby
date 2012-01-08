@@ -1,10 +1,10 @@
 class Integer
   def reverse
-    self.to_s.reverse.to_i
+    to_s.reverse.to_i
   end
 
   def palindromic?
-    self == self.reverse
+    self == reverse
   end
     
   def lychrel?(n = self)
