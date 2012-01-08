@@ -17,7 +17,7 @@ class Integer
     return false if self % 2 == 0
     return false if (self + 1) % 6 != 0 && (self - 1) % 6 != 0
 
-    3.upto(Math.sqrt(self).floor) do |div|
+    (3..Math.sqrt(self).floor).step(2).each do |div|
       return false if self % div == 0
     end
 

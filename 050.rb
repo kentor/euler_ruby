@@ -1,12 +1,24 @@
-require 'set'
 require 'prime'
 
-primes = Prime.each(1000000).to_set
+class Integer
+  def prime?
+    return false if self % 2 == 0
+    return false if (self + 1) % 6 != 0 && (self - 1) % 6 != 0
+
+    (3..Math.sqrt(self).floor).step(2).each do |div|
+      return false if self % div == 0
+    end
+
+    return true
+  end
+end
+
+prime_gen = Prime.each
 array = []
 
 sum, num = 0, nil
-primes.each do |p|
-  sum += p
+loop do
+  sum += (p = prime_gen.next)
   break if sum > 1000000
   array.unshift(p)
 end
@@ -14,7 +26,7 @@ end
 array.size.downto(21) do |window|
   array.each_cons(window).each do |a|
     sum = a.inject(:+)
-    if primes.include?(sum); num = sum; break; end
+    if sum.prime?; num = sum; break; end
   end
   break if num
 end
