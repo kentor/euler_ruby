@@ -1,7 +1,7 @@
 class Array
-  def decrypt(key = [])
+  def decrypt(key = [], size = key.size)
     each_with_index.map do |e,i|
-      (e ^ key[i%3]).chr
+      (e ^ key[i%size]).chr
     end.join
   end
 end
