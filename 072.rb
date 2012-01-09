@@ -1,5 +1,4 @@
 require 'prime'
-require 'set'
 
 class Integer
   Primes = Prime.each(1000).to_a
