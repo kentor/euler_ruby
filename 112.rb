@@ -1,17 +1,14 @@
 class Integer
-  def bouncy?(q = self, state = nil)
-    return false if self < 101
+  def bouncy?
     sorted = self.to_s.chars.sort.join
     self != sorted.to_i && self != sorted.reverse.to_i
   end
 end
 
-count, total = 0, 0
-loop do
-  if (total += 1).bouncy?
-    count += 1
-    break if count.to_f / total == 0.99
-  end
+count, total = 0, 100
+
+until count.to_f / total == 0.99
+  count += 1 if (total += 1).bouncy?
 end
 
 puts total
