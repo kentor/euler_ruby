@@ -6,4 +6,4 @@ class Integer
   end
 end
 
-puts (2..1000000).step(2).map { |n| [n/n.phi, n] }.max[1]
+puts 2.step(1000000, 2).map { |n| [n/n.phi, n] }.max[1]

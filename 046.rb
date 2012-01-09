@@ -4,7 +4,7 @@ require 'prime'
 primes = Prime.each(10000).to_set
 squares = Set.new (1..1000) { |n| n*n }
 
-(35...10000).step(2).each do |n|
+(35...10000).step(2) do |n|
   next if primes.include?(n)
 
   flag = true

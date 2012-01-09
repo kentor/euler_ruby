@@ -10,7 +10,7 @@ end
 
 max, num, length = 0, 0, 0
 
-(500001..999999).step(2).each do |n|
+500001.step(999999, 2) do |n|
   max, num = length, n if (length = n.seq_length) > max
 end
 
