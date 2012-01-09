@@ -1001,7 +1001,7 @@ begin
   13846,725685)
 end
 
-puts data.each_with_index.map { |s,i|
+puts data.map.with_index(1) { |s,i|
   b, e = s.split(",").map(&:to_f)
-  [e * Math.log(b), i+1]
+  [e * Math.log(b), i]
 }.max[1]
