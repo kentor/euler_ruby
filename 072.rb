@@ -1,22 +1,14 @@
-require 'prime'
-
-class Integer
-  Primes = Prime.each(1000).to_a
-
-  def prime_division(n = self, pf = [])
-    Primes.each do |p|
-      break if p*p > self
-      count = 0
-      count, n = count + 1, n / p while n % p == 0
-      pf << [p, count] if count != 0
+class PhiSieve
+  def self.generate(limit)
+    sieve = (0..limit).to_a
+    sieve[0] = sieve[1] = 0
+    sieve.each_with_index do |p,i|
+      next if p != i || i < 2
+      break if 2*p > limit
+      p.step(limit, p) { |n| sieve[n] = sieve[n] / p * (p-1) }
     end
-    pf << [n, 1] if n > 1
-    pf
-  end
-
-  def phi
-    self.prime_division.map { |p,k| p**(k-1) * (p-1) }.inject(:*)
+    sieve
   end
 end
 
-puts (2..1000000).map(&:phi).inject(:+)
+puts PhiSieve.generate(10**6).inject(:+)

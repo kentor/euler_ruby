@@ -12,13 +12,13 @@ triangle = "75
 70 11 33 28 77 73 17 78 39 68 17 57
 91 71 52 38 17 14 91 43 58 50 27 29 48
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
-04 62 98 27 23 09 70 98 73 93 38 53 60 04 23".split("\n").map{ |a| a.split.map(&:to_i)
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23".split("\n").map { |a| a.split.map(&:to_i) }
 
 def largest_sum(triangle)
   return triangle.flatten.first if triangle.size == 1
 
   row = triangle.size - 2
-  triangle[row].each_with_index do |n, i|
+  triangle[row].each_with_index do |n,i|
     triangle[row][i] += [triangle[row+1][i], triangle[row+1][i+1]].max
   end
   
