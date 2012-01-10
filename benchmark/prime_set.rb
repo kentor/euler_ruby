@@ -18,21 +18,6 @@ class Integer
 end
 
 class PrimeSieve
-  attr_accessor :sieve
-
-  def initialize(limit)
-    @sieve = (0..limit).to_a
-    @sieve[0] = sieve[1] = nil
-    @sieve.each do |n|
-      next unless n
-      break if n*n > limit
-      (n*n).step(limit, n) { |c| @sieve[c] = nil }
-    end
-    @sieve.compact!
-  end
-end
-
-class PrimeSieve
   def self.generate(limit)
     sieve = (0..limit).to_a
     sieve[0] = sieve[1] = nil
@@ -62,12 +47,12 @@ Benchmark.bm(30) do |x|
   x.report("generate 1e6:") { Prime.each(1000000).to_set }
   x.report("sieve 1e6:") { PrimeSieve.generate(1000000).to_set }
 
-  # x.report("select 1e7:") { (1..10000000).select(&:prime?).to_set }
-  # x.report("generate 1e7:") { Prime.each(10000000).to_set }
+  x.report("select 1e7:") { (1..10000000).select(&:prime?).to_set }
+  x.report("generate 1e7:") { Prime.each(10000000).to_set }
   x.report("sieve 1e7:") { PrimeSieve.generate(10000000).to_set }
 end
 
-# Ruby Prime library really sucks. Make your own sieve. Seriously.
+# Ruby Prime library really sucks. Make your own sieve.
 #                                      user     system      total        real
 # select 1e3:                      0.000000   0.000000   0.000000 (  0.001336)
 # generate 1e3:                    0.000000   0.000000   0.000000 (  0.002177)
