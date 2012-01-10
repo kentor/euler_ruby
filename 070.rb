@@ -12,5 +12,6 @@ class Integer
 end
 
 puts (2000..4000).select(&:prime?).combination(2).select { |p,q|
-  p*q < 10000000 && ((p-1)*(q-1)).to_s.chars.sort == (p*q).to_s.chars.sort
-}.map { |p,q| [(1 - 1.0/p) * (1 - 1.0/q), p*q] }.max[1]
+  phi, n = (p-1)*(q-1), p*q
+  n < 10000000 && phi.to_s.chars.sort == n.to_s.chars.sort
+}.map { |p,q| [(1-1.0/p) * (1-1.0/q), p*q] }.max[1]
