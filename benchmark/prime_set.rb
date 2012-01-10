@@ -17,27 +17,57 @@ class Integer
   end
 end
 
+class PrimeSieve
+  attr_accessor :sieve
+
+  def initialize(limit)
+    @sieve = (0..limit).to_a
+    @sieve[0] = sieve[1] = nil
+    @sieve.each do |n|
+      next unless n
+      break if n*n > limit
+      (n*n).step(limit, n) { |c| @sieve[c] = nil }
+    end
+    @sieve.compact!
+  end
+end
+
 Benchmark.bm(30) do |x|
   x.report("select 1e3:") { (1..1000).select(&:prime?).to_set }
   x.report("generate 1e3:") { Prime.each(1000).to_set }
+  x.report("sieve 1e3:") { PrimeSieve.new(1000).sieve.to_set }
 
   x.report("select 1e4:") { (1..10000).select(&:prime?).to_set }
   x.report("generate 1e4:") { Prime.each(10000).to_set }
+  x.report("sieve 1e4:") { PrimeSieve.new(10000).sieve.to_set }
 
   x.report("select 1e5:") { (1..100000).select(&:prime?).to_set }
   x.report("generate 1e5:") { Prime.each(100000).to_set }
+  x.report("sieve 1e5:") { PrimeSieve.new(100000).sieve.to_set }
 
   x.report("select 1e6:") { (1..1000000).select(&:prime?).to_set }
   x.report("generate 1e6:") { Prime.each(1000000).to_set }
+  x.report("sieve 1e6:") { PrimeSieve.new(1000000).sieve.to_set }
+
+  x.report("select 1e7:") { (1..10000000).select(&:prime?).to_set }
+  x.report("generate 1e7:") { Prime.each(10000000).to_set }
+  x.report("sieve 1e7:") { PrimeSieve.new(10000000).sieve.to_set }
 end
 
-# Prime generator is faster than select(&:prime?)
+# Ruby Prime library really sucks. Make your own sieve. Seriously.
 #                                      user     system      total        real
-# select 1e3:                      0.000000   0.000000   0.000000 (  0.001344)
-# generate 1e3:                    0.000000   0.000000   0.000000 (  0.001866)
-# select 1e4:                      0.020000   0.000000   0.020000 (  0.022779)
-# generate 1e4:                    0.020000   0.000000   0.020000 (  0.014972)
-# select 1e5:                      0.290000   0.000000   0.290000 (  0.287634)
-# generate 1e5:                    0.200000   0.000000   0.200000 (  0.203340)
-# select 1e6:                      5.120000   0.010000   5.130000 (  5.123359)
-# generate 1e6:                    4.160000   0.000000   4.160000 (  4.164597)
+# select 1e3:                      0.000000   0.000000   0.000000 (  0.001336)
+# generate 1e3:                    0.000000   0.000000   0.000000 (  0.002177)
+# sieve 1e3:                       0.000000   0.000000   0.000000 (  0.000659)
+# select 1e4:                      0.010000   0.000000   0.010000 (  0.018573)
+# generate 1e4:                    0.030000   0.000000   0.030000 (  0.021531)
+# sieve 1e4:                       0.000000   0.000000   0.000000 (  0.006370)
+# select 1e5:                      0.230000   0.000000   0.230000 (  0.226737)
+# generate 1e5:                    0.240000   0.000000   0.240000 (  0.240239)
+# sieve 1e5:                       0.040000   0.000000   0.040000 (  0.043263)
+# select 1e6:                      4.590000   0.010000   4.600000 (  4.599763)
+# generate 1e6:                    4.330000   0.020000   4.350000 (  4.354300)
+# sieve 1e6:                       0.540000   0.010000   0.550000 (  0.548924)
+# select 1e6:                    111.690000   0.040000 111.730000 (111.754195)
+# generate 1e6:                   87.220000   0.080000  87.300000 ( 87.609435)
+# sieve 1e6:                       6.350000   0.150000   6.500000 (  6.830833)
