@@ -32,6 +32,20 @@ class PrimeSieve
   end
 end
 
+class PrimeSieve
+  def self.each(limit)
+    sieve = (0..limit).to_a
+    sieve[0] = sieve[1] = nil
+    sieve.each do |n|
+      next unless n
+      break if n*n > limit
+      (n*n).step(limit, n) { |c| sieve[c] = nil }
+    end
+    sieve.compact!
+    sieve.to_enum
+  end
+end
+
 Benchmark.bm(30) do |x|
   x.report("select 1e3:") { (1..1000).select(&:prime?).to_set }
   x.report("generate 1e3:") { Prime.each(1000).to_set }
@@ -68,6 +82,6 @@ end
 # select 1e6:                      4.590000   0.010000   4.600000 (  4.599763)
 # generate 1e6:                    4.330000   0.020000   4.350000 (  4.354300)
 # sieve 1e6:                       0.540000   0.010000   0.550000 (  0.548924)
-# select 1e6:                    111.690000   0.040000 111.730000 (111.754195)
-# generate 1e6:                   87.220000   0.080000  87.300000 ( 87.609435)
-# sieve 1e6:                       6.350000   0.150000   6.500000 (  6.830833)
+# select 1e7:                    111.690000   0.040000 111.730000 (111.754195)
+# generate 1e7:                   87.220000   0.080000  87.300000 ( 87.609435)
+# sieve 1e7:                       6.350000   0.150000   6.500000 (  6.830833)
