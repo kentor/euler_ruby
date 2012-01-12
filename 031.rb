@@ -1,10 +1,9 @@
-ways = [0]*26
-ways[0] = 1
-[1,5,10,25].each do |x|
-  (x..25).each do |i|
+ways = [0]*200
+ways.unshift(1)
+[1,2,5,10,20,50,100,200].each do |x|
+  (x..200).each do |i|
     ways[i] += ways[i-x]
   end
-  puts ways.to_s
 end
 
-puts ways.to_s
+puts ways.last
