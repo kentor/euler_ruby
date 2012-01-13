@@ -13,7 +13,7 @@ end
 
 count, total = 0, 1
 
-3.step(10**10, 2) do |length|
+3.step(10000000000, 2) do |length|
   limit, step = length * length, length - 1
   count += (limit-3*step).step(limit, step).count(&:prime?)
   next unless count.to_f / (total += 4) < 0.1

@@ -1,6 +1,4 @@
-require 'rubygems'
 require 'ruby-poker'
-
 puts "8C TS KC 9H 4S 7D 2S 5D 3S AC
 5C AD 5D AC 9C 7C 5H 8D TD KS
 3H 7H 6S KC JS QH TD JC 2D 8S
@@ -1000,7 +998,7 @@ KC 7H QC 6D 8H 6S 5S AH 7S 8C
 AD 3D TS KS 7H JH 2D JS QD AC
 9C JD 7C 6D TC 6H 6C JC 3D 3S
 QC KC 3S JC KD 2C 8D AH QS TS
-AS KD 3D JD 8H 7C 8C 5C QD 6C".split("\n").count { |a| PokerHand.new(a[0..13]) > PokerHand.new(a[15..28]) }
+AS KD 3D JD 8H 7C 8C 5C QD 6C".split("\n").count { |a| PokerHand.new(a[0,14]) > PokerHand.new(a[15,14]) }
 
 # class PokerHand
 #   attr_reader :hand, :values, :suits
