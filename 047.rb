@@ -7,7 +7,7 @@ class Integer
 end
 
 n = 646
-loop do
+while true
   unless (n+4).four_factors?; n += 4; next; end
   unless (n+3).four_factors?; n += 3; next; end
   unless (n+2).four_factors?; n += 2; next; end

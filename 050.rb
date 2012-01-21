@@ -17,7 +17,7 @@ prime_gen = Prime.each
 array = []
 
 sum, num = 0, nil
-loop do
+while true
   sum += (p = prime_gen.next)
   break if sum > 1000000
   array.unshift(p)
