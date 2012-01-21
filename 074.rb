@@ -6,7 +6,7 @@ class Integer
     (2..self).inject(:*)
   end
 
-  Factorials = (0..9).map(&:!)
+  Factorials = (0..9).map(&:!).freeze
 
   def digit_factorial(q = self, sum = 0)
     return 1 if self == 0
