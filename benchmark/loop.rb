@@ -2,7 +2,7 @@ require 'benchmark'
 
 max = 10_000_000
 
-Benchmark::bm(30) do |x|
+Benchmark.bm(30) do |x|
    x.report("each") do
      (0..max).each do
      end
