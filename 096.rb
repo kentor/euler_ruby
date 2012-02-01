@@ -1,6 +1,6 @@
 module Sudoku
   class Puzzle
-    ASCII = ".123456789"
+    ASCII = "0123456789"
     BIN = "\000\001\002\003\004\005\006\007\010\011"
 
     def initialize(lines)
@@ -14,7 +14,7 @@ module Sudoku
 
       raise Invalid, "Grid is the wrong size" unless s.size == 81
 
-      if i = s.index(/[^123456789\.]/)
+      if i = s.index(/[^1234567890]/)
         raise Invalid, "Illegal character #{s[i,1]} in puzzle"
       end
 
@@ -651,4 +651,4 @@ Grid 50
 010800050
 009040301
 000702000
-000008006).join.split(/Grid\d{2}/).drop(1).map { |s| Sudoku.solve(Sudoku::Puzzle.new(s.tr('0', '.'))) }.inject(:+)
+000008006).join.split(/Grid\d{2}/).drop(1).map { |s| Sudoku.solve(Sudoku::Puzzle.new(s)) }.inject(:+)

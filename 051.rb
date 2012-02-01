@@ -4,7 +4,7 @@ require 'sieve'
 class Integer
   def include_3?
     ary = self.to_s.split('')
-    if (ary.count(d = "0") == 3 || ary.count(d = "1") == 3 || ary.count(d = "2") == 3)
+    if ary.count(d = "0") == 3 || ary.count(d = "1") == 3 || ary.count(d = "2") == 3
       return self.to_s.tr!(d, ".")
     end
   end
