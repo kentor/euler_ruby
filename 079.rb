@@ -2,8 +2,8 @@ class Graph
   require 'set'
 
   def initialize(enum)
-    @adj_list = Hash[enum.map { |o| [o, Set.new] }]
-    @indegree = Hash[enum.map { |o| [o, 0] }]
+    @adj_list = Hash[enum.map { |v| [v, Set.new] }]
+    @indegree = Hash[enum.map { |v| [v, 0] }]
   end
 
   def insert_edge(v, u)
