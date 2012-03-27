@@ -33,5 +33,5 @@ class Integer
 end
 
 puts (1..7).map { |digits|
-  (0..9).to_a.reverse.repeated_combination(digits).map { |a| a.join.to_i }.select(&:_89?)
-}.flatten.map(&:count_forms).inject(:+)
+  [*0..9].reverse!.repeated_combination(digits).map { |a| a.join.to_i }.select!(&:_89?)
+}.flatten!.map!(&:count_forms).inject(:+)

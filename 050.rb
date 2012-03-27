@@ -19,7 +19,7 @@ array = []
 sum, num = 0, nil
 while true
   sum += (p = prime_gen.next)
-  break if sum > 1000000
+  break if sum > 1_000_000
   array.unshift(p)
 end
 

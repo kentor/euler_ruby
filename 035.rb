@@ -1,7 +1,6 @@
 class String
   def rotate!
-    return self if size == 1
-    replace self[1...size] + self[0]
+    replace self[1...size] << self[0]
   end
 
   def include_024568?
@@ -12,9 +11,6 @@ end
 
 class Integer
   def prime?
-    return true  if self == 2 || self == 3
-    return false if self == 1
-    return false if self % 2 == 0
     return false if (self + 1) % 6 != 0 && (self - 1) % 6 != 0
 
     3.step(Math.sqrt(self).floor, 2) do |div|
@@ -38,4 +34,4 @@ class Integer
   end
 end
 
-puts (11...10**6).step(2).count(&:circular_prime?) + 4
+puts (11...1_000_000).step(2).count(&:circular_prime?) + 4
