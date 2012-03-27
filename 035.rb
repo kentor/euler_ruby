@@ -1,6 +1,6 @@
 class String
   def rotate!
-    replace self[1...size] << self[0]
+    replace "#{self[1...size]}#{self[0]}"
   end
 
   def include_024568?
@@ -30,7 +30,7 @@ class Integer
       return false if !string.to_i.prime?
     end
 
-    return true
+    true
   end
 end
 
