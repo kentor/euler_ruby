@@ -12,16 +12,15 @@ class Integer
 
     thousands = DICT[_thousands] + " thousand" if _thousands && _thousands != 0
     hundreds = DICT[_hundreds] + " hundred" if _hundreds && _hundreds != 0
-    
+
     if _tens == 1
       tens = DICT[10+_ones]
     else
       tens = DICT[10*_tens] if _tens
-      ones = DICT[_ones] 
+      ones = DICT[_ones]
     end
 
-    (thousands + " " + hundreds + (self > 100 && (_tens > 0 || _ones > 0) ? " and " : "") +
-      tens + (tens.empty? ? "" : " ") + ones).strip
+    %Q!#{thousands} #{hundreds} #{'and' if self > 100 && (_tens + _ones > 0)} #{tens} #{ones}!.squeeze(' ').strip
   end
 end
 
